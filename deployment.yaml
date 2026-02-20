@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ml-app-container
-          image: krishna23243/ml-gitops-app:78f233f
+          image: krishna23243/ml-gitops-app:50a2a27
           ports:
             - containerPort: 8000
           resources:
