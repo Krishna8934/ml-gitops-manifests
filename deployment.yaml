@@ -13,9 +13,26 @@ spec:
         app: ml-app
     spec:
       containers:
-      - name: ml-app-container
-        image: krishna23243/ml-gitops-app:6ecf954
-        ports:
-        - containerPort: 8000
-
-
+        - name: ml-app-container
+          image: krishna23243/ml-gitops-app:6ecf954
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
